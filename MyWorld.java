@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+    private int width = 600;
+    private int height = 400;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -26,9 +27,19 @@ public class MyWorld extends World
     private void prepare()
     {
         Elephant elephant = new Elephant();
-        addObject(elephant,50,200);
+        addObject(elephant,50,height/2);
         
+        createApple();
+    }
+    
+    /**
+     * Create a new apple at random location at top of screen
+     */
+    public void createApple()
+    {
         Apple apple = new Apple();
-        addObject(apple, 300, 0);
+        int x = Greenfoot.getRandomNumber(width);
+        int y = Greenfoot.getRandomNumber(height);
+        addObject(apple, x, y);
     }
 }
