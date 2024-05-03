@@ -10,6 +10,8 @@ public class MyWorld extends World
 {
     private int width = 600;
     private int height = 400;
+    public int score = 0;
+    Label scoreLabel;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -17,9 +19,34 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1);
+        super(600, 400, 1, false);
         prepare();
+        
+        // Create a label
+        scoreLabel = new Label(0,80);
+        addObject(scoreLabel,50,50);
+        
+        createApple();
     }
+    
+    /**
+     * End the game and draw 'GameOver'
+     */
+    public void gameOver()
+    {
+        Label gameOverLabel = new Label("Game Over", 100);
+        addObject(gameOverLabel,width/2, height/2);
+    }
+    
+    /**
+     * Increase score
+     */
+    public void increaseScore()
+    {
+        score++;
+        scoreLabel.setValue(score);
+    }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -28,8 +55,6 @@ public class MyWorld extends World
     {
         Elephant elephant = new Elephant();
         addObject(elephant,50,height/2);
-        
-        createApple();
     }
     
     /**
@@ -39,7 +64,7 @@ public class MyWorld extends World
     {
         Apple apple = new Apple();
         int x = Greenfoot.getRandomNumber(width);
-        int y = Greenfoot.getRandomNumber(height);
+        int y = Greenfoot.getRandomNumber(10);
         addObject(apple, x, y);
     }
 }
