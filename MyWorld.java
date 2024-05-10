@@ -54,7 +54,7 @@ public class MyWorld extends World
     private void prepare()
     {
         Elephant elephant = new Elephant();
-        addObject(elephant,50,height/2);
+        addObject(elephant,50,height-100);
     }
     
     /**
