@@ -43,9 +43,9 @@ public class TitleScreen extends World
     {
         Elephant elephant = new Elephant();
         addObject(elephant, getWidth()/2, getHeight()/2-80);
-        Label label = new Label("Use <-- and --> to move", 30);
+        Label label = new Label("Use \u2190 and \u2192 to move", 30);
         addObject(label,310,250);
-        Label label2 = new Label("Press space to start", 30);
+        Label label2 = new Label("Press <space> to start", 30);
         addObject(label2,306,284);
     }
 }
