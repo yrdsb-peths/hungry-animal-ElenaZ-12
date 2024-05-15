@@ -66,8 +66,6 @@ public class MyWorld extends World
         score--;
         scoreLabel.setValue(score);
         speedChange();
-        // Make bombs
-        createBomb();
     }
     
     public void speedChange()
@@ -100,7 +98,7 @@ public class MyWorld extends World
             Bomb bomb = new Bomb();
             int x = Greenfoot.getRandomNumber(width);
             int y = Greenfoot.getRandomNumber(10);
-            addObject(bomb, x, y);
+            addObject(bomb, x, y-50);
         }
     }
 }

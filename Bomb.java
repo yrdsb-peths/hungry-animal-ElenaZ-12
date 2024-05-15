@@ -9,10 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Bomb extends Actor
 {
     int bombSpeed = 2;
+    int score = 0;
+    
     public void act()
     {
         setLocation(getX(),getY()+bombSpeed);
-        
         MyWorld world = (MyWorld) getWorld();
         // Remove bomb when elephant touches it or reaches the bottom
         if (isTouching(Elephant.class))
@@ -25,6 +26,13 @@ public class Bomb extends Actor
         else if(getY()>=world.getHeight())
         {
             world.removeObject(this);
+            world.createBomb();
         }
+        
+    }
+    
+    public void setScore(int scr)
+    {
+        score = scr;
     }
 }
