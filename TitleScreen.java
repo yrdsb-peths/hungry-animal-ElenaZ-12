@@ -19,6 +19,7 @@ public class TitleScreen extends World
         super(600, 400, 1); 
 
         addObject(titleLabel, getWidth()/2, getHeight()/2);
+        
         prepare();
     }
 

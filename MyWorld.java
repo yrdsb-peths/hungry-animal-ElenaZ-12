@@ -12,7 +12,7 @@ public class MyWorld extends World
     private int height = 400;
     public int score = 0;
     Label scoreLabel;
-    int level = 1;
+    int appleSpeed = 1;
     
     /**
      * Constructor for objects of class MyWorld.
@@ -22,12 +22,16 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1, false);
-        prepare();
+        
+        // Create the elephant
+        Elephant elephant = new Elephant();
+        addObject(elephant,50,height-100);
         
         // Create a label
         scoreLabel = new Label(0,80);
         addObject(scoreLabel,50,50);
         
+        // Creates apples
         createApple();
     }
     
@@ -50,18 +54,8 @@ public class MyWorld extends World
         
         if (score % 5 == 0)
         {
-            level += 1;
+            appleSpeed ++;
         }
-    }
-    
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private void prepare()
-    {
-        Elephant elephant = new Elephant();
-        addObject(elephant,50,height-100);
     }
     
     /**
@@ -70,7 +64,7 @@ public class MyWorld extends World
     public void createApple()
     {
         Apple apple = new Apple();
-        apple.setSpeed(level);
+        apple.setSpeed(appleSpeed);
         int x = Greenfoot.getRandomNumber(width);
         int y = Greenfoot.getRandomNumber(10);
         addObject(apple, x, y);
