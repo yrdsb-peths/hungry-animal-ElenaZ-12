@@ -10,8 +10,10 @@ public class MyWorld extends World
 {
     private int width = 600;
     private int height = 400;
-    public int score = 0;
+    
     Label scoreLabel;
+    
+    public int score = 0;
     int appleSpeed = 1;
     
     /**
@@ -51,7 +53,25 @@ public class MyWorld extends World
     {
         score++;
         scoreLabel.setValue(score);
-        
+        speedChange();
+        // Make bombs
+        createBomb();
+    }
+    
+    /**
+     * Decrease score
+     */
+    public void decreaseScore()
+    {
+        score--;
+        scoreLabel.setValue(score);
+        speedChange();
+        // Make bombs
+        createBomb();
+    }
+    
+    public void speedChange()
+    {
         if (score % 5 == 0)
         {
             appleSpeed ++;
@@ -68,5 +88,19 @@ public class MyWorld extends World
         int x = Greenfoot.getRandomNumber(width);
         int y = Greenfoot.getRandomNumber(10);
         addObject(apple, x, y);
+    }
+    
+    /**
+     * Create a bomb once score is higher than 5
+     */
+    public void createBomb()
+    {
+        if (score>5)
+        {
+            Bomb bomb = new Bomb();
+            int x = Greenfoot.getRandomNumber(width);
+            int y = Greenfoot.getRandomNumber(10);
+            addObject(bomb, x, y);
+        }
     }
 }
