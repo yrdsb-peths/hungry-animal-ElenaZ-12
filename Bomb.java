@@ -13,22 +13,24 @@ public class Bomb extends Actor
     
     public void act()
     {
-        setLocation(getX(),getY()+bombSpeed);
         MyWorld world = (MyWorld) getWorld();
-        // Remove bomb when elephant touches it or reaches the bottom
-        if (isTouching(Elephant.class))
+        int score = world.getScore();
+        if (score>5)
         {
-            world.removeObject(this);
-            world.decreaseScore();
-            //removeTouching(Elephant.class);
-            //world.gameOver();
+            setLocation(getX(),getY()+bombSpeed);
+            // Remove bomb when elephant touches it or reaches the bottom
+            if (isTouching(Elephant.class))
+            {
+                world.removeObject(this);
+                world.decreaseScore();
+                world.createBomb();
+            }
+            else if(getY()>=world.getHeight())
+            {
+                world.removeObject(this);
+                world.createBomb();
+            }
         }
-        else if(getY()>=world.getHeight())
-        {
-            world.removeObject(this);
-            world.createBomb();
-        }
-        
     }
     
     public void setScore(int scr)
