@@ -29,7 +29,7 @@ public class MyWorld extends World
         
         // Create the elephant
         Elephant elephant = new Elephant();
-        addObject(elephant,50,height-100);
+        addObject(elephant,50,height-70);
         
         // Create a label
         scoreLabel = new Label(0,80);
@@ -68,12 +68,11 @@ public class MyWorld extends World
     {
         score--;
         scoreLabel.setValue(score);
-        speedChange();
     }
     
     public void speedChange()
     {
-        if (score % 5 == 0)
+        if (score % 4 == 0)
         {
             appleSpeed ++;
         }

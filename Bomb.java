@@ -15,14 +15,17 @@ public class Bomb extends Actor
     {
         MyWorld world = (MyWorld) getWorld();
         int score = world.getScore();
-        if (score>5)
+        if (score>4)
         {
             setLocation(getX(),getY()+bombSpeed);
             // Remove bomb when elephant touches it or reaches the bottom
             if (isTouching(Elephant.class))
             {
                 world.removeObject(this);
-                world.decreaseScore();
+                for (int i = 0; i<5; i++)
+                {
+                    world.decreaseScore();
+                }
                 world.createBomb();
             }
             else if(getY()>=world.getHeight())
