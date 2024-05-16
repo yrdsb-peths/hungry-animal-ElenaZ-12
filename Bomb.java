@@ -50,7 +50,7 @@ public class Bomb extends Actor
             {
                 world.decreaseScore();
             }
-            if (world.getScore()>4)
+            if (world.getScore()<=4)
             {
                 world.createBomb();
             }

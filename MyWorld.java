@@ -67,10 +67,6 @@ public class MyWorld extends World
     {
         score--;
         scoreLabel.setValue(score);
-        if (score<=0)
-        {
-            createBomb();
-        }
     }
     
     public void speedChange()
