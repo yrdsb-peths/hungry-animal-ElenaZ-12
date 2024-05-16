@@ -14,9 +14,8 @@ public class MyWorld extends World
     Label scoreLabel;
     
     public int score = 0;
-    int appleSpeed = 1;
-    
-    Bomb bomb;
+    int appleSpeed = 2;
+    int bSpeed = 2;
     
     /**
      * Constructor for objects of class MyWorld.
@@ -59,6 +58,7 @@ public class MyWorld extends World
         score++;
         scoreLabel.setValue(score);
         speedChange();
+        moreBombs();
     }
     
     /**
@@ -78,6 +78,15 @@ public class MyWorld extends World
         }
     }
     
+    public void moreBombs()
+    {
+        if (score%10==0)
+        {
+           bSpeed ++;
+           createBomb();
+        }
+    }
+    
     /**
      * Get score
      */
@@ -93,9 +102,9 @@ public class MyWorld extends World
     {
         Apple apple = new Apple();
         apple.setSpeed(appleSpeed);
-        int x = Greenfoot.getRandomNumber(width);
+        int x = Greenfoot.getRandomNumber(width-60);
         int y = Greenfoot.getRandomNumber(10);
-        addObject(apple, x, y);
+        addObject(apple, x+30, y);
     }
     
     /**
@@ -104,6 +113,7 @@ public class MyWorld extends World
     public void createBomb()
     {
         Bomb bomb = new Bomb();
+        bomb.setSpeed(bSpeed);
         int x = Greenfoot.getRandomNumber(width);
         int y = Greenfoot.getRandomNumber(10);
         addObject(bomb, x, y-50);
