@@ -10,12 +10,11 @@ public class MyWorld extends World
 {
     private int width = 600;
     private int height = 400;
-    
     Label scoreLabel;
-    
     public int score = 0;
-    int appleSpeed = 2;
-    int bSpeed = 2;
+    public int appleSpeed = 2;
+    public int bSpeed = 2;
+    public boolean endGame = false;
     
     /**
      * Constructor for objects of class MyWorld.
@@ -47,7 +46,7 @@ public class MyWorld extends World
     {
         Label gameOverLabel = new Label("Game Over", 100);
         addObject(gameOverLabel,width/2, height/2);
-        score = 0;
+        endGame = true;
     }
     
     /**
@@ -68,13 +67,20 @@ public class MyWorld extends World
     {
         score--;
         scoreLabel.setValue(score);
+        if (score<=0)
+        {
+            createBomb();
+        }
     }
     
     public void speedChange()
     {
         if (score % 4 == 0)
         {
-            appleSpeed ++;
+            if (appleSpeed <5)
+            {
+                appleSpeed ++;
+            }
         }
     }
     
@@ -93,6 +99,11 @@ public class MyWorld extends World
     public int getScore()
     {
         return score;
+    }
+    
+    public boolean getEndGame()
+    {
+        return endGame;
     }
     
     /**

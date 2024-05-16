@@ -10,29 +10,38 @@ public class Bomb extends Actor
 {
     int bombSpeed = 2;
     int score = 0;
+    boolean endGame = false;
+    boolean startBomb = false;
     
     public void act()
     {
-        MyWorld world = (MyWorld) getWorld();
-        int score = world.getScore();
-        if (score>4)
+        checkStartBomb();
+        if (startBomb)
         {
             bombing();
         }
     }
     
-    public void setScore(int scr)
+    public void checkStartBomb()
     {
-        score = scr;
+        MyWorld world = (MyWorld) getWorld();
+        int score = world.getScore();
+        boolean endGame = world.getEndGame();
+        if (score>4)
+        {
+            startBomb = true;
+        }
+        if (endGame)
+        {
+            startBomb = false;
+        }
     }
     
     public void bombing()
     {
         MyWorld world = (MyWorld) getWorld();
-        
         // Makes bomb move down according to speed
         setLocation(getX(),getY()+bombSpeed);
-        
         // Remove bomb when elephant touches it or reaches the bottom
         if (isTouching(Elephant.class))
         {
@@ -41,12 +50,18 @@ public class Bomb extends Actor
             {
                 world.decreaseScore();
             }
-            world.createBomb();
+            if (world.getScore()>4)
+            {
+                world.createBomb();
+            }
         }
         else if(getY()>=world.getHeight())
         {
             world.removeObject(this);
-            world.createBomb();
+            if (world.getScore()>4)
+            {
+                world.createBomb();
+            }
         }
     }
     
