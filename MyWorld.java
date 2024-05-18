@@ -54,8 +54,8 @@ public class MyWorld extends World
     {
         score++;
         scoreLabel.setValue(score);
-        speedChange();
-        moreBombs();
+        appleSpdIncrease();
+        bombSpdIncrease();
     }
     
     /**
@@ -65,9 +65,11 @@ public class MyWorld extends World
     {
         score--;
         scoreLabel.setValue(score);
+        appleSpdDecrease();
+        bombSpdDecrease();
     }
     
-    public void speedChange()
+    public void appleSpdIncrease()
     {
         if (score % 5 == 0)
         {
@@ -78,7 +80,18 @@ public class MyWorld extends World
         }
     }
     
-    public void moreBombs()
+    public void appleSpdDecrease()
+    {
+        if (score % 5 == 0)
+        {
+            if (appleSpeed > 2)
+            {
+                appleSpeed --;
+            }
+        }
+    }
+    
+    public void bombSpdIncrease()
     {
         if (score % 5 == 0)
         {
@@ -87,6 +100,17 @@ public class MyWorld extends World
                bSpeed ++;
            }
            createBomb();
+        }
+    }
+    
+    public void bombSpdDecrease()
+    {
+        if (score % 5 == 0)
+        {
+           if (bSpeed > 1)
+           {
+               bSpeed --;
+           }
         }
     }
     
