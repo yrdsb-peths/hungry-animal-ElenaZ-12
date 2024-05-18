@@ -107,6 +107,11 @@ public class MyWorld extends World
                bSpeed ++;
            }
            createBomb();
+           int surprise = Greenfoot.getRandomNumber(3);
+           if (surprise == 1)
+           {
+               createBomb();
+           }
         }
     }
     
