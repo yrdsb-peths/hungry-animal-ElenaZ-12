@@ -45,28 +45,27 @@ public class Bomb extends Actor
         // Remove bomb when elephant touches it or reaches the bottom
         if (isTouching(Elephant.class))
         {
-            world.removeObject(this);
+            removeBomb();
             for (int i = 0; i<5; i++)
             {
                 world.decreaseScore();
             }
-            if (world.getScore()<=4)
-            {
-                world.createBomb();
-            }
         }
         else if(getY()>=world.getHeight())
         {
-            world.removeObject(this);
-            if (world.getScore()>4)
-            {
-                world.createBomb();
-            }
+            removeBomb();
+            world.createBomb();
         }
     }
     
     public void setSpeed(int spd)
     {
         bombSpeed = spd;
+    }
+    
+    public void removeBomb()
+    {
+        MyWorld world = (MyWorld) getWorld();
+        world.removeObject(this);
     }
 }

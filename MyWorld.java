@@ -35,8 +35,6 @@ public class MyWorld extends World
         
         // Creates apples
         createApple();
-        
-        createBomb();
     }
     
     /**
@@ -71,7 +69,7 @@ public class MyWorld extends World
     
     public void speedChange()
     {
-        if (score % 4 == 0)
+        if (score % 5 == 0)
         {
             if (appleSpeed <5)
             {
@@ -82,9 +80,12 @@ public class MyWorld extends World
     
     public void moreBombs()
     {
-        if (score%10==0)
+        if (score % 5 == 0)
         {
-           bSpeed ++;
+           if (bSpeed <5)
+           {
+               bSpeed ++;
+           }
            createBomb();
         }
     }
