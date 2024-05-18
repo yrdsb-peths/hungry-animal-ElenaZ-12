@@ -63,10 +63,17 @@ public class MyWorld extends World
      */
     public void decreaseScore()
     {
-        score--;
+        if (score>0)
+        {
+            score--;
+        }
         scoreLabel.setValue(score);
         appleSpdDecrease();
         bombSpdDecrease();
+        if (score == 0)
+        {
+            gameOver();
+        }
     }
     
     public void appleSpdIncrease()

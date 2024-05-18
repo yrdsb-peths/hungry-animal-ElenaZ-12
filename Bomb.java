@@ -10,7 +10,6 @@ public class Bomb extends Actor
 {
     int bombSpeed = 2;
     int score = 0;
-    boolean endGame = false;
     boolean startBomb = false;
     
     public void act()
@@ -26,14 +25,9 @@ public class Bomb extends Actor
     {
         MyWorld world = (MyWorld) getWorld();
         int score = world.getScore();
-        boolean endGame = world.getEndGame();
         if (score>4)
         {
             startBomb = true;
-        }
-        if (endGame)
-        {
-            startBomb = false;
         }
     }
     
