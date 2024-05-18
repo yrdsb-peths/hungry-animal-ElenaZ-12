@@ -71,17 +71,17 @@ public class Elephant extends Actor
      */
     public void eat()
     {
-        MyWorld world = (MyWorld) getWorld();
-        boolean endGame = world.getEndGame();
-        if (!endGame)
+        if (isTouching(Apple.class))
         {
-            if (isTouching(Apple.class))
-            {
+           MyWorld world = (MyWorld) getWorld();
+           boolean endGame = world.getEndGame();
+           if (!endGame)
+           {
                elephantSound.play();
                removeTouching(Apple.class);
                world.createApple();
                world.increaseScore();
-            }
+           }
         }
     }
     
