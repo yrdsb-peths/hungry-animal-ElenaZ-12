@@ -159,7 +159,7 @@ public class MyWorld extends World
         Bomb bomb = new Bomb();
         bomb.setSpeed(bSpeed);
         int x = Greenfoot.getRandomNumber(width);
-        int y = Greenfoot.getRandomNumber(80);
-        addObject(bomb, x, 0-y);
+        int y = Greenfoot.getRandomNumber(50);
+        addObject(bomb, x, -30-y);
     }
 }
