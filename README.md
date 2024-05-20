@@ -12,3 +12,13 @@ This particular repository is the starting template for the Hungry Elephant tuto
 [Part 2: Game Enhancements](https://youtu.be/TwID9i0Ey6o)
 
 [Part 3: Final Touches](https://youtu.be/GT-eFwa4Abc)
+
+Things I added:
+Bombs that decrease score by 5
+Bombs appear every time score increases by 5
+Chance for extra bomb to spawn
+Increases or decreases bomb and cherry speed based on score
+Background music that loops
+Replay game
+Timer
+Game over if timer or score reaches 0

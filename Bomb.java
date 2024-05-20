@@ -12,6 +12,9 @@ public class Bomb extends Actor
     int score = 0;
     boolean startBomb = false;
     
+    /**
+     * Makes the bomb act
+     */
     public void act()
     {
         checkStartBomb();
@@ -21,6 +24,9 @@ public class Bomb extends Actor
         }
     }
     
+    /**
+     * Checks if score is over 4, if it is, startBomb is true
+     */
     public void checkStartBomb()
     {
         MyWorld world = (MyWorld) getWorld();
@@ -35,6 +41,9 @@ public class Bomb extends Actor
         }
     }
     
+    /**
+     * Moves the bomb and removes it if touching Elephant or reached bottom
+     */
     public void bombing()
     {
         MyWorld world = (MyWorld) getWorld();
@@ -56,11 +65,17 @@ public class Bomb extends Actor
         }
     }
     
+    /**
+     * Set bomb speed to given int
+     */
     public void setSpeed(int spd)
     {
         bombSpeed = spd;
     }
     
+    /**
+     * Removes bomb from world
+     */
     public void removeBomb()
     {
         MyWorld world = (MyWorld) getWorld();

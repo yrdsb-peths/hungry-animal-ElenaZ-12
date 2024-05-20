@@ -10,7 +10,7 @@ public class MyWorld extends World
 {
     private int width = 600;
     private int height = 400;
-    
+    World parent_node;
     Label scoreLabel;
     Label gameTimer;
     
@@ -23,7 +23,6 @@ public class MyWorld extends World
     Counter timeCount = new Counter();
     /**
      * Constructor for objects of class MyWorld.
-     * 
      */
     public MyWorld()
     {    
@@ -41,7 +40,10 @@ public class MyWorld extends World
         // Creates apples
         createApple();
         
-        addObject (timeCount, width/2, 40);
+        //Creates timer
+        Label time = new Label("Time Remaining:",30);
+        addObject(time,width/2,30);
+        addObject (timeCount, width/2, 60);
         timer.mark();
     }
     
@@ -50,17 +52,16 @@ public class MyWorld extends World
      */
     public void act()
     {
-        int timeLimit = 15;
+        int timeLimit = 30;
         if (timeLimit - timer.millisElapsed()/1000 < 0)
         {
             gameOver();
         }
         if (endGame)
         {
-            if(Greenfoot.isKeyDown("space"))
+            if(Greenfoot.isKeyDown("r"))
             {
-                MyWorld gameWorld = new MyWorld();
-                Greenfoot.setWorld(gameWorld);
+                Greenfoot.setWorld(parent_node);
             }
         }
         else if (!endGame) 
@@ -69,7 +70,6 @@ public class MyWorld extends World
         }
     }
     
-    
     /**
      * End the game and draw 'GameOver'
      */
@@ -77,8 +77,10 @@ public class MyWorld extends World
     {
         Label gameOverLabel = new Label("Game Over", 100);
         addObject(gameOverLabel,width/2, height/2);
-        Label restart = new Label ("Press space to restart", 30);
+        
+        Label restart = new Label ("Press r to restart", 30);
         addObject (restart, width/2, height/2 + 50);
+        
         endGame = true;
     }
     
@@ -111,6 +113,9 @@ public class MyWorld extends World
         }
     }
     
+    /**
+     * Increase apple speed
+     */
     public void appleSpdIncrease()
     {
         if (score % 5 == 0)
@@ -122,6 +127,9 @@ public class MyWorld extends World
         }
     }
     
+    /**
+     * Decrease apple speed
+     */
     public void appleSpdDecrease()
     {
         if (score % 5 == 0)
@@ -133,6 +141,9 @@ public class MyWorld extends World
         }
     }
     
+    /**
+     * Increase bomb speed
+     */
     public void bombSpdIncrease()
     {
         if (score % 5 == 0)
@@ -150,6 +161,9 @@ public class MyWorld extends World
         }
     }
     
+    /**
+     * Decrease bomb speed
+     */
     public void bombSpdDecrease()
     {
         if (score % 5 == 0)
@@ -169,6 +183,9 @@ public class MyWorld extends World
         return score;
     }
     
+    /**
+     * Get whether game has ended or not
+     */
     public boolean getEndGame()
     {
         return endGame;

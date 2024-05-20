@@ -10,6 +10,7 @@ public class TitleScreen extends World
 {
     Label titleLabel = new Label ("Hungry Elephant", 60);
     GreenfootSound bgMusic = new GreenfootSound("titlescreen_bgm.mp3");
+    
     /**
      * Constructor for objects of class TitleScreen.
      * 
@@ -30,7 +31,9 @@ public class TitleScreen extends World
         // Start the game if user presses the space bar
         if(Greenfoot.isKeyDown("space"))
         {
+            bgMusic.stop();
             MyWorld gameWorld = new MyWorld();
+            gameWorld.parent_node=(World)this;
             Greenfoot.setWorld(gameWorld);
         }
         bgMusic.playLoop();

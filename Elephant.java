@@ -40,6 +40,9 @@ public class Elephant extends Actor
         setImage(idleRight[0]);
     }
     
+    /**
+     * Makes the Elephant move and be animated
+     */
     public void act()
     {
         if(Greenfoot.isKeyDown("left"))
