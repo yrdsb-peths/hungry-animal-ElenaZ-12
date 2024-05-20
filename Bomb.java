@@ -29,6 +29,10 @@ public class Bomb extends Actor
         {
             startBomb = true;
         }
+        if (world.getEndGame())
+        {
+            startBomb = false;
+        }
     }
     
     public void bombing()

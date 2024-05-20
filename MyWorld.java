@@ -10,12 +10,17 @@ public class MyWorld extends World
 {
     private int width = 600;
     private int height = 400;
+    
     Label scoreLabel;
+    Label gameTimer;
+    
     public int score = 0;
     public int appleSpeed = 2;
     public int bSpeed = 2;
     public boolean endGame = false;
     
+    SimpleTimer timer = new SimpleTimer();
+    Counter timeCount = new Counter();
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -35,7 +40,35 @@ public class MyWorld extends World
         
         // Creates apples
         createApple();
+        
+        addObject (timeCount, width/2, 40);
+        timer.mark();
     }
+    
+    /**
+     * The main world act loop
+     */
+    public void act()
+    {
+        int timeLimit = 15;
+        if (timeLimit - timer.millisElapsed()/1000 < 0)
+        {
+            gameOver();
+        }
+        if (endGame)
+        {
+            if(Greenfoot.isKeyDown("space"))
+            {
+                MyWorld gameWorld = new MyWorld();
+                Greenfoot.setWorld(gameWorld);
+            }
+        }
+        else if (!endGame) 
+        {
+            timeCount.setValue(timeLimit - timer.millisElapsed()/1000);
+        }
+    }
+    
     
     /**
      * End the game and draw 'GameOver'
@@ -44,6 +77,8 @@ public class MyWorld extends World
     {
         Label gameOverLabel = new Label("Game Over", 100);
         addObject(gameOverLabel,width/2, height/2);
+        Label restart = new Label ("Press space to restart", 30);
+        addObject (restart, width/2, height/2 + 50);
         endGame = true;
     }
     
